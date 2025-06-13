@@ -16,6 +16,7 @@ class UserProfileVM extends GetxController {
 
   // Add this getter to easily access current user's admin status
   bool get isCurrentUserAdmin => selectedUser.value?.isAdmin ?? false;
+  String get currentUserId => authRepository.getLoggedInUser()?.uid ?? '';
 
   Future<void> fetchUserById(String userId) async {
     try {

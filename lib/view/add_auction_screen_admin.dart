@@ -1,7 +1,9 @@
 import 'dart:io';
+
 import 'package:auction_app/view_model/auction_vm.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
 import '../model/auction.dart';
 
 class AddAuctionScreenAdmin extends StatefulWidget {
@@ -25,8 +27,6 @@ class AddAuctionScreenAdminState extends State<AddAuctionScreenAdmin> {
     super.initState();
     auctionViewModel = Get.find();
     auction = Get.arguments;
-
-
 
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (auction != null) {
@@ -54,7 +54,6 @@ class AddAuctionScreenAdminState extends State<AddAuctionScreenAdmin> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16),
         // Remove Obx here
@@ -87,29 +86,32 @@ class AddAuctionScreenAdminState extends State<AddAuctionScreenAdmin> {
               GestureDetector(
                 onTap: auctionViewModel.pickImage,
                 child: Obx(
-                      () => Container(
+                  () => Container(
                     height: 180,
                     width: double.infinity,
                     decoration: BoxDecoration(
                       color: Colors.grey[200],
                       borderRadius: BorderRadius.circular(12),
                       border: Border.all(color: Colors.grey.shade400),
-                      image: auctionViewModel.image.value != null
-                          ? DecorationImage(
-                        image: FileImage(
-                            File(auctionViewModel.image.value!.path)),
-                        fit: BoxFit.cover,
-                      )
-                          : auction != null
-                          ? DecorationImage(
-                        image: NetworkImage(auction!.imageUrl),
-                        fit: BoxFit.cover,
-                      )
-                          : null,
+                      image:
+                          auctionViewModel.image.value != null
+                              ? DecorationImage(
+                                image: FileImage(
+                                  File(auctionViewModel.image.value!.path),
+                                ),
+                                fit: BoxFit.cover,
+                              )
+                              : auction != null
+                              ? DecorationImage(
+                                image: NetworkImage(auction!.imageUrl),
+                                fit: BoxFit.cover,
+                              )
+                              : null,
                     ),
-                    child: auctionViewModel.image.value == null && auction == null
-                        ? const Center(child: Text("Tap to select image"))
-                        : null,
+                    child:
+                        auctionViewModel.image.value == null && auction == null
+                            ? const Center(child: Text("Tap to select image"))
+                            : null,
                   ),
                 ),
               ),
@@ -122,7 +124,7 @@ class AddAuctionScreenAdminState extends State<AddAuctionScreenAdmin> {
               GestureDetector(
                 onTap: () => auctionViewModel.pickDateTime(context),
                 child: Obx(
-                      () => Container(
+                  () => Container(
                     padding: const EdgeInsets.symmetric(
                       horizontal: 14,
                       vertical: 16,
@@ -136,12 +138,13 @@ class AddAuctionScreenAdminState extends State<AddAuctionScreenAdmin> {
                     child: Text(
                       auctionViewModel.selectedEndTime.value != null
                           ? auctionViewModel.selectedEndTime.value
-                          .toString() // You might want to format this
+                              .toString() // You might want to format this
                           : 'Tap to select date & time',
                       style: TextStyle(
-                        color: auctionViewModel.selectedEndTime.value != null
-                            ? Colors.black
-                            : Colors.grey,
+                        color:
+                            auctionViewModel.selectedEndTime.value != null
+                                ? Colors.black
+                                : Colors.grey,
                       ),
                     ),
                   ),
@@ -152,11 +155,13 @@ class AddAuctionScreenAdminState extends State<AddAuctionScreenAdmin> {
 
               // Status Switch
               Obx(
-                    () => SwitchListTile(
+                () => SwitchListTile(
                   title: const Text('Active Status'),
                   value: auctionViewModel.status.value,
-                  onChanged: (newValue) =>
-                  auctionViewModel.status.value=newValue , // Directly update the RxBool
+                  onChanged:
+                      (newValue) =>
+                          auctionViewModel.status.value =
+                              newValue, // Directly update the RxBool
                 ),
               ),
 
@@ -166,32 +171,35 @@ class AddAuctionScreenAdminState extends State<AddAuctionScreenAdmin> {
               SizedBox(
                 width: double.infinity,
                 child: Obx(
-                      () => auctionViewModel.isSaving.value
-                      ? const Center(child: CircularProgressIndicator())
-                      : ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.deepPurple,
-                      padding: const EdgeInsets.symmetric(vertical: 14),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                    ),
-                    onPressed: () {
-                      auctionViewModel.addUpdateAuctions(
-                        titleController.text,
-                        descriptionController.text,
-                        startBidController.text,
-                        auction,
-                      );
-                    },
-                    child: Text(
-                      auction == null ? 'Create Auction' : 'Update Auction',
-                      style: const TextStyle(
-                        fontSize: 16,
-                        color: Colors.white,
-                      ),
-                    ),
-                  ),
+                  () =>
+                      auctionViewModel.isSaving.value
+                          ? const Center(child: CircularProgressIndicator())
+                          : ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: Colors.deepPurple,
+                              padding: const EdgeInsets.symmetric(vertical: 14),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(12),
+                              ),
+                            ),
+                            onPressed: () {
+                              auctionViewModel.addUpdateAuctions(
+                                titleController.text,
+                                descriptionController.text,
+                                startBidController.text,
+                                auction,
+                              );
+                            },
+                            child: Text(
+                              auction == null
+                                  ? 'Create Auction'
+                                  : 'Update Auction',
+                              style: const TextStyle(
+                                fontSize: 16,
+                                color: Colors.white,
+                              ),
+                            ),
+                          ),
                 ),
               ),
             ],
@@ -202,12 +210,12 @@ class AddAuctionScreenAdminState extends State<AddAuctionScreenAdmin> {
   }
 
   Widget buildTextField(
-      TextEditingController controller,
-      String label,
-      String hint, {
-        int maxLines = 1,
-        TextInputType inputType = TextInputType.text,
-      }) {
+    TextEditingController controller,
+    String label,
+    String hint, {
+    int maxLines = 1,
+    TextInputType inputType = TextInputType.text,
+  }) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 8),
       child: TextFormField(
@@ -215,8 +223,11 @@ class AddAuctionScreenAdminState extends State<AddAuctionScreenAdmin> {
         maxLines: maxLines,
         keyboardType: inputType,
         decoration: inputDecoration(hint).copyWith(labelText: label),
-        validator: (value) =>
-        value == null || value.isEmpty ? 'This field is required' : null,
+        validator:
+            (value) =>
+                value == null || value.isEmpty
+                    ? 'This field is required'
+                    : null,
       ),
     );
   }

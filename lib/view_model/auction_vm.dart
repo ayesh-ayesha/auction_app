@@ -3,8 +3,8 @@ import 'package:auction_app/repositories/auction_repo.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
+
 import '../repositories/media_repo.dart';
-import '../view/home_screen.dart'; // Make sure this import is correct
 
 class AuctionViewModel extends GetxController {
   AuctionRepository auctionRepository = Get.find();
@@ -17,7 +17,6 @@ class AuctionViewModel extends GetxController {
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
   Rx<bool> status = false.obs;
   Rxn<DateTime> selectedEndTime = Rxn<DateTime>();
-
 
   // progress variables
   var isLoading = false.obs;
@@ -36,25 +35,6 @@ class AuctionViewModel extends GetxController {
   }
 
   // deriving single auction for auction details screen
-  void initializeWithAuctionId(String auctionId) {
-    print('auctionId: $auctionId');
-
-    // Try to find immediately
-    final foundAuction = auctionList.firstWhereOrNull((p) => p.id == auctionId);
-    if (foundAuction != null) {
-      selectedAuctionDetails.value = foundAuction;
-      print('Found immediately: ${foundAuction.title}');
-    } else {
-      // Otherwise listen for changes
-      ever(auctionList, (_) {
-        final foundLater = auctionList.firstWhereOrNull(
-          (p) => p.id == auctionId,
-        );
-        selectedAuctionDetails.value = foundLater;
-        print('Found later: ${foundLater?.title}');
-      });
-    }
-  }
 
   Future<void> addUpdateAuctions(
     String title,
@@ -122,7 +102,6 @@ class AuctionViewModel extends GetxController {
         Get.snackbar("Success", "Auction updated successfully");
         // TODO:CREATING PROBLEM WHEN GET.OFFALL IS CALLED
         Get.offAllNamed('/home');
-
       }
 
       // Reset the form values (not the key itself)
@@ -199,9 +178,11 @@ class AuctionViewModel extends GetxController {
       auctionList.removeWhere((item) => item.id == auction.id);
       Get.snackbar("Success", "Auction and related bids deleted successfully");
       Get.offAllNamed('/home');
-
     } catch (e) {
-      Get.snackbar("Error", "Failed to delete auction and bids: ${e.toString()}");
+      Get.snackbar(
+        "Error",
+        "Failed to delete auction and bids: ${e.toString()}",
+      );
     }
   }
 }

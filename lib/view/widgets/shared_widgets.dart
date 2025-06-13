@@ -19,7 +19,11 @@ Widget infoChip(IconData icon, String text) {
   );
 }
 
-void showBidDialog(BuildContext context, Auction auction, BidViewModel bidViewModel) {
+void showBidDialog(
+  BuildContext context,
+  Auction auction,
+  BidViewModel bidViewModel,
+) {
   final TextEditingController bidController = TextEditingController();
 
   Get.dialog(
@@ -46,7 +50,10 @@ void showBidDialog(BuildContext context, Auction auction, BidViewModel bidViewMo
           onPressed: () {
             final newBid = double.tryParse(bidController.text);
             if (newBid == null || newBid <= auction.currentBid) {
-              Get.snackbar("Invalid Bid", "Your bid must be greater than \$${auction.currentBid}");
+              Get.snackbar(
+                "Invalid Bid",
+                "Your bid must be greater than \$${auction.currentBid}",
+              );
               return;
             }
 

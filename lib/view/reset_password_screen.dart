@@ -13,7 +13,7 @@ class ResetPasswordPage extends StatefulWidget {
 
 class _ResetPasswordPageState extends State<ResetPasswordPage> {
   late TextEditingController emailController;
-  bool isPasswordVisible=false;
+  bool isPasswordVisible = false;
   late ResetPasswordVm resetViewModel;
 
   @override
@@ -22,17 +22,16 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
 
     super.initState();
     // emailController=TextEditingController(text: Get.arguments);
-    Map<String,dynamic> maps=Get.arguments;
-    emailController=TextEditingController(text: maps['email']);
-    resetViewModel=Get.find();
-
+    Map<String, dynamic> maps = Get.arguments;
+    emailController = TextEditingController(text: maps['email']);
+    resetViewModel = Get.find();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal:20),
+        padding: const EdgeInsets.symmetric(horizontal: 20),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -46,24 +45,26 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
                 hintText: "Enter Email",
                 prefixIcon: Icon(Icons.email),
                 border: OutlineInputBorder(),
-
-
               ),
             ),
 
             Obx(() {
-              return resetViewModel.isLoading.value?CircularProgressIndicator():
-              ElevatedButton(onPressed: (){
-                resetViewModel.reset(emailController.text,);
-              }, child: Text("Reset"));
+              return resetViewModel.isLoading.value
+                  ? CircularProgressIndicator()
+                  : ElevatedButton(
+                    onPressed: () {
+                      resetViewModel.reset(emailController.text);
+                    },
+                    child: Text("Reset"),
+                  );
+            }),
 
-
-            },),
-
-            TextButton(onPressed: (){
-              Get.back();
-            }, child: Text("Back"))
-
+            TextButton(
+              onPressed: () {
+                Get.back();
+              },
+              child: Text("Back"),
+            ),
           ],
         ),
       ),
@@ -71,11 +72,10 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
   }
 }
 
-class ResetPasswordBinding extends Bindings{
+class ResetPasswordBinding extends Bindings {
   @override
   void dependencies() {
-    Get.put(AuthRepository(),);
-    Get.put(ResetPasswordVm(),);
+    Get.put(AuthRepository());
+    Get.put(ResetPasswordVm());
   }
-
 }

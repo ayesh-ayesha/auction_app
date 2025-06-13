@@ -26,9 +26,8 @@ class _AuctionDetailsScreenUserState extends State<AuctionDetailsScreenUser> {
     super.initState();
     auctionViewModel = Get.find();
     userProfileVM = Get.find();
-    bidViewModel=Get.find();
+    bidViewModel = Get.find();
     auction = Get.arguments as Auction;
-
     WidgetsBinding.instance.addPostFrameCallback((_) {
       auctionViewModel.selectedAuctionDetails.value = auction;
     });
@@ -38,6 +37,8 @@ class _AuctionDetailsScreenUserState extends State<AuctionDetailsScreenUser> {
   Widget build(BuildContext context) {
     return Obx(() {
       final currentAuction = auctionViewModel.selectedAuctionDetails.value;
+      int userBids = bidViewModel.liveBids.length;
+
       if (currentAuction == null) {
         return const Scaffold(body: Center(child: Text('Auction not found')));
       }
@@ -126,9 +127,12 @@ class _AuctionDetailsScreenUserState extends State<AuctionDetailsScreenUser> {
                             vertical: 6,
                           ),
                           decoration: BoxDecoration(
-                            color: currentAuction.status // If status is true (active)
-                                ? Colors.green[100] // Use green background
-                                : Colors.red[100], // Else (inactive) use red background
+                            color:
+                                currentAuction
+                                        .status // If status is true (active)
+                                    ? Colors.green[100] // Use green background
+                                    : Colors.red[100],
+                            // Else (inactive) use red background
                             borderRadius: BorderRadius.circular(12),
                           ),
                           child: Text(
@@ -136,9 +140,11 @@ class _AuctionDetailsScreenUserState extends State<AuctionDetailsScreenUser> {
                             currentAuction.status ? 'Active' : 'Inactive',
                             style: TextStyle(
                               // If status is true (active)
-                              color: currentAuction.status
-                                  ? Colors.green[800] // Use dark green text
-                                  : Colors.red[800], // Else (inactive) use dark red text
+                              color:
+                                  currentAuction.status
+                                      ? Colors.green[800] // Use dark green text
+                                      : Colors.red[800],
+                              // Else (inactive) use dark red text
                               fontWeight: FontWeight.bold,
                             ),
                           ),
@@ -162,7 +168,6 @@ class _AuctionDetailsScreenUserState extends State<AuctionDetailsScreenUser> {
                       child: const Text(
                         'Bid Now',
                         style: TextStyle(color: Colors.white),
-
                       ),
                     ),
                   ],

@@ -1,20 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:intl/intl.dart';
 
 import '../model/auction.dart';
 import '../view_model/UserProfile_vm.dart';
 import '../view_model/auction_vm.dart';
 import 'add_auction_screen_admin.dart';
-import 'home_screen.dart';
-import 'home_screen_content.dart';
 import 'widgets/shared_widgets.dart';
 
 class AuctionDetailsScreenAdmin extends StatefulWidget {
   const AuctionDetailsScreenAdmin({super.key});
 
   @override
-  State<AuctionDetailsScreenAdmin> createState() => _AuctionDetailsScreenAdminState();
+  State<AuctionDetailsScreenAdmin> createState() =>
+      _AuctionDetailsScreenAdminState();
 }
 
 class _AuctionDetailsScreenAdminState extends State<AuctionDetailsScreenAdmin> {
@@ -52,16 +50,21 @@ class _AuctionDetailsScreenAdminState extends State<AuctionDetailsScreenAdmin> {
               GestureDetector(
                 onTap: () {},
                 child: ClipRRect(
-                  borderRadius: const BorderRadius.vertical(top: Radius.circular(16)),
+                  borderRadius: const BorderRadius.vertical(
+                    top: Radius.circular(16),
+                  ),
                   child: InteractiveViewer(
                     child: Image.network(
                       currentAuction.imageUrl,
                       fit: BoxFit.cover,
-                      errorBuilder: (context, _, __) => Container(
-                        height: 180,
-                        color: Colors.grey[300],
-                        child: const Center(child: Icon(Icons.image_not_supported, size: 40)),
-                      ),
+                      errorBuilder:
+                          (context, _, __) => Container(
+                            height: 180,
+                            color: Colors.grey[300],
+                            child: const Center(
+                              child: Icon(Icons.image_not_supported, size: 40),
+                            ),
+                          ),
                     ),
                   ),
                 ),
@@ -71,35 +74,58 @@ class _AuctionDetailsScreenAdminState extends State<AuctionDetailsScreenAdmin> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(currentAuction.title, style: const TextStyle(fontSize: 30, fontWeight: FontWeight.bold)),
+                    Text(
+                      currentAuction.title,
+                      style: const TextStyle(
+                        fontSize: 30,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
                     const SizedBox(height: 8),
-                    Text(currentAuction.description, style: TextStyle(color: Colors.grey[700])),
+                    Text(
+                      currentAuction.description,
+                      style: TextStyle(color: Colors.grey[700]),
+                    ),
                     const SizedBox(height: 12),
                     Column(
                       children: [
-                        infoChip(Icons.monetization_on, 'Starting Bid: \$${currentAuction.startBid},'),
+                        infoChip(
+                          Icons.monetization_on,
+                          'Starting Bid: \$${currentAuction.startBid},',
+                        ),
                         const SizedBox(height: 5),
-                        infoChip(Icons.monetization_on, 'Highest Bid: \$${currentAuction.currentBid}'),
+                        infoChip(
+                          Icons.monetization_on,
+                          'Highest Bid: \$${currentAuction.currentBid}',
+                        ),
                         const SizedBox(height: 5),
-                        infoChip(Icons.gavel, 'Bids : ${currentAuction.bidCount}'),
+                        infoChip(
+                          Icons.gavel,
+                          'Bids : ${currentAuction.bidCount}',
+                        ),
                         const SizedBox(height: 5),
-                        infoChip(Icons.timer, 'EndTime : ${formatEndTime(currentAuction.endTime)}'),
+                        infoChip(
+                          Icons.timer,
+                          'EndTime : ${formatEndTime(currentAuction.endTime)}',
+                        ),
                       ],
                     ),
                     const SizedBox(height: 10),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        infoChip(Icons.person, currentAuction.highestBidderId ?? 'No bids yet'),
                         Container(
                           padding: const EdgeInsets.symmetric(
                             horizontal: 10,
                             vertical: 6,
                           ),
                           decoration: BoxDecoration(
-                            color: currentAuction.status // If status is true (active)
-                                ? Colors.green[100] // Use green background
-                                : Colors.red[100], // Else (inactive) use red background
+                            color:
+                                currentAuction
+                                        .status // If status is true (active)
+                                    ? Colors.green[100] // Use green background
+                                    : Colors.red[100],
+                            // Else (inactive) use red background
                             borderRadius: BorderRadius.circular(12),
                           ),
                           child: Text(
@@ -107,9 +133,11 @@ class _AuctionDetailsScreenAdminState extends State<AuctionDetailsScreenAdmin> {
                             currentAuction.status ? 'Active' : 'Inactive',
                             style: TextStyle(
                               // If status is true (active)
-                              color: currentAuction.status
-                                  ? Colors.green[800] // Use dark green text
-                                  : Colors.red[800], // Else (inactive) use dark red text
+                              color:
+                                  currentAuction.status
+                                      ? Colors.green[800] // Use dark green text
+                                      : Colors.red[800],
+                              // Else (inactive) use dark red text
                               fontWeight: FontWeight.bold,
                             ),
                           ),
@@ -125,9 +153,14 @@ class _AuctionDetailsScreenAdminState extends State<AuctionDetailsScreenAdmin> {
                           },
                           style: ElevatedButton.styleFrom(
                             backgroundColor: Colors.deepPurple,
-                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(12),
+                            ),
                           ),
-                          child: const Text('Edit', style: TextStyle(color: Colors.white)),
+                          child: const Text(
+                            'Edit',
+                            style: TextStyle(color: Colors.white),
+                          ),
                         ),
                         const SizedBox(width: 10),
                         ElevatedButton(
@@ -135,15 +168,24 @@ class _AuctionDetailsScreenAdminState extends State<AuctionDetailsScreenAdmin> {
                             Get.dialog(
                               AlertDialog(
                                 title: const Text('Delete Auction'),
-                                content: const Text('Are you sure you want to delete this auction?'),
+                                content: const Text(
+                                  'Are you sure you want to delete this auction?',
+                                ),
                                 actions: [
-                                  TextButton(onPressed: () => Get.back(), child: const Text('Cancel')),
+                                  TextButton(
+                                    onPressed: () => Get.back(),
+                                    child: const Text('Cancel'),
+                                  ),
                                   TextButton(
                                     onPressed: () {
-                                      auctionViewModel.deleteAuction(currentAuction);
-
+                                      auctionViewModel.deleteAuction(
+                                        currentAuction,
+                                      );
                                     },
-                                    child: const Text('Delete', style: TextStyle(color: Colors.red)),
+                                    child: const Text(
+                                      'Delete',
+                                      style: TextStyle(color: Colors.red),
+                                    ),
                                   ),
                                 ],
                               ),
@@ -151,9 +193,14 @@ class _AuctionDetailsScreenAdminState extends State<AuctionDetailsScreenAdmin> {
                           },
                           style: ElevatedButton.styleFrom(
                             backgroundColor: Colors.red,
-                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(12),
+                            ),
                           ),
-                          child: const Text('Delete', style: TextStyle(color: Colors.white)),
+                          child: const Text(
+                            'Delete',
+                            style: TextStyle(color: Colors.white),
+                          ),
                         ),
                       ],
                     ),

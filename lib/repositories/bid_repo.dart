@@ -1,5 +1,6 @@
 import 'package:auction_app/model/bid.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+
 class BidRepository {
   late CollectionReference bidCollection;
   late CollectionReference auctionCollection;
@@ -18,11 +19,12 @@ class BidRepository {
 
   // Get existing bid by this user for a specific auction
   Future<Bid?> getUserBidForAuction(String auctionId, String userId) async {
-    final query = await bidCollection
-        .where('auctionId', isEqualTo: auctionId)
-        .where('bidderId', isEqualTo: userId)
-        .limit(1)
-        .get();
+    final query =
+        await bidCollection
+            .where('auctionId', isEqualTo: auctionId)
+            .where('bidderId', isEqualTo: userId)
+            .limit(1)
+            .get();
 
     if (query.docs.isNotEmpty) {
       final doc = query.docs.first;
@@ -33,11 +35,11 @@ class BidRepository {
 
   // Place bid and update auction in a single transaction
   Future<void> placeBidAndContemporaneouslyUpdateAuction(
-      Bid newBid,
-      String auctionId,
-      double newBidAmount,
-      String highestBidderId,
-      ) async {
+    Bid newBid,
+    String auctionId,
+    double newBidAmount,
+    String highestBidderId,
+  ) async {
     WriteBatch batch = FirebaseFirestore.instance.batch();
 
     DocumentReference auctionDocRef = auctionCollection.doc(auctionId);
@@ -65,8 +67,10 @@ class BidRepository {
       'highestBidderId': highestBidderId,
       'bidCount': FieldValue.increment(1),
       'userBidCounts.${newBid.bidderId}': FieldValue.increment(1),
+      'userBidHistory.${newBid.bidderId}': FieldValue.arrayUnion([
+        newBidAmount,
+      ]),
     });
-
     return await batch.commit();
   }
 
@@ -87,10 +91,11 @@ class BidRepository {
     });
 
     // Step 3: Recalculate currentBid and highestBidderId
-    final allBids = await bidCollection
-        .where('auctionId', isEqualTo: bid.auctionId)
-        .orderBy('amount', descending: true)
-        .get();
+    final allBids =
+        await bidCollection
+            .where('auctionId', isEqualTo: bid.auctionId)
+            .orderBy('amount', descending: true)
+            .get();
 
     // Filter out the bid being deleted
     final otherBids = allBids.docs.where((doc) => doc.id != bid.bidId).toList();
@@ -118,20 +123,6 @@ class BidRepository {
 
   Stream<List<Bid>> loadAllBids() {
     return bidCollection.snapshots().map((snapshot) => convertToBids(snapshot));
-  }
-
-  Stream<List<Bid>> loadAllBidsOfAuction(String auctionId) {
-    return bidCollection
-        .where('auctionId', isEqualTo: auctionId)
-        .snapshots()
-        .map((snapshot) => convertToBids(snapshot));
-  }
-
-  Stream<List<Bid>> loadAllBidsOfAllUsers() {
-    return bidCollection
-        .where('isBidder', isEqualTo: true)
-        .snapshots()
-        .map((snapshot) => convertToBids(snapshot));
   }
 
   Stream<List<Bid>> loadAllBidsOfCurrentUser(String userId) {

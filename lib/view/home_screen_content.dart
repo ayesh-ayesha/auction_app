@@ -34,7 +34,12 @@ class _HomeScreenContentState extends State<HomeScreenContent> {
       // Show loading or empty state if needed
       // TODO: WHEN LAST AUCTION DELETED IT DOES NOT SHOW THIS TEXT LINE
       if (auctionViewModel.auctionList.isEmpty) {
-        return const Center(child: Text("No auctions available",style: TextStyle(color: Colors.blueAccent,fontSize: 30),));
+        return const Center(
+          child: Text(
+            "No auctions available",
+            style: TextStyle(color: Colors.blueAccent, fontSize: 30),
+          ),
+        );
       }
       // if(auctionViewModel.auctionRepository.auctionCollection==null){
       //   return const Center(child: Text("No auctions available.",));
@@ -103,40 +108,47 @@ class _HomeScreenContentState extends State<HomeScreenContent> {
                       ),
                       const SizedBox(height: 10),
                       Wrap(
-                        children: [Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            // _infoChip(
-                            //   Icons.person,
-                            //   auction.highestBidderId ?? 'No bids yet',
-                            // ),
-
-                            Container(
-                              padding: const EdgeInsets.symmetric(
-                                horizontal: 10,
-                                vertical: 6,
-                              ),
-                              decoration: BoxDecoration(
-                                color:
-                                auction.status // If auction.status is true (meaning active)
-                                    ? Colors.green[100] // Use green background for 'Active'
-                                    : Colors.orange[100], // Use orange for 'Inactive' (or whatever you prefer for inactive)
-                                borderRadius: BorderRadius.circular(12),
-                              ),
-                              child: Text(
-                                // Display "ACTIVE" if status is true, "INACTIVE" if status is false
-                                auction.status ? 'ACTIVE' : 'INACTIVE',
-                                style: TextStyle(
+                        children: [
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              // _infoChip(
+                              //   Icons.person,
+                              //   auction.highestBidderId ?? 'No bids yet',
+                              // ),
+                              Container(
+                                padding: const EdgeInsets.symmetric(
+                                  horizontal: 10,
+                                  vertical: 6,
+                                ),
+                                decoration: BoxDecoration(
                                   color:
-                                  auction.status // If auction.status is true (meaning active)
-                                      ? Colors.green[800] // Use dark green text for 'Active'
-                                      : Colors.orange[800], // Use dark orange text for 'Inactive' (or whatever you prefer for inactive)
-                                  fontWeight: FontWeight.bold,
+                                      auction
+                                              .status // If auction.status is true (meaning active)
+                                          ? Colors
+                                              .green[100] // Use green background for 'Active'
+                                          : Colors.orange[100],
+                                  // Use orange for 'Inactive' (or whatever you prefer for inactive)
+                                  borderRadius: BorderRadius.circular(12),
+                                ),
+                                child: Text(
+                                  // Display "ACTIVE" if status is true, "INACTIVE" if status is false
+                                  auction.status ? 'ACTIVE' : 'INACTIVE',
+                                  style: TextStyle(
+                                    color:
+                                        auction
+                                                .status // If auction.status is true (meaning active)
+                                            ? Colors
+                                                .green[800] // Use dark green text for 'Active'
+                                            : Colors.orange[800],
+                                    // Use dark orange text for 'Inactive' (or whatever you prefer for inactive)
+                                    fontWeight: FontWeight.bold,
+                                  ),
                                 ),
                               ),
-                            ),
-                          ],
-                        ),]
+                            ],
+                          ),
+                        ],
                       ),
                       const SizedBox(height: 14),
                       const SizedBox(width: 20),

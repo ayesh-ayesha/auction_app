@@ -32,26 +32,16 @@ class _MyBidsScreenUserState extends State<MyBidsScreenUser> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Icon(
-                  Icons.gavel_outlined,
-                  size: 80,
-                  color: Colors.grey,
-                ),
+                Icon(Icons.gavel_outlined, size: 80, color: Colors.grey),
                 SizedBox(height: 16),
                 Text(
                   "You haven't placed any bids yet.",
-                  style: TextStyle(
-                    fontSize: 18,
-                    color: Colors.grey,
-                  ),
+                  style: TextStyle(fontSize: 18, color: Colors.grey),
                   textAlign: TextAlign.center,
                 ),
                 Text(
                   "Browse auctions and place your first bid!",
-                  style: TextStyle(
-                    fontSize: 16,
-                    color: Colors.grey,
-                  ),
+                  style: TextStyle(fontSize: 16, color: Colors.grey),
                   textAlign: TextAlign.center,
                 ),
               ],
@@ -68,31 +58,40 @@ class _MyBidsScreenUserState extends State<MyBidsScreenUser> {
             margin: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 4.0),
             elevation: 4.0, // Add some shadow for depth
             shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(12.0), // Rounded corners for the card
+              borderRadius: BorderRadius.circular(
+                12.0,
+              ), // Rounded corners for the card
             ),
             child: Padding(
               padding: const EdgeInsets.all(12.0),
               child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start, // Align content to the start
+                crossAxisAlignment: CrossAxisAlignment.start,
+                // Align content to the start
                 children: [
                   Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       // Auction Image
-                      if (bid.auctionImageUrl != null && bid.auctionImageUrl!.isNotEmpty)
+                      if (bid.auctionImageUrl != null &&
+                          bid.auctionImageUrl!.isNotEmpty)
                         ClipRRect(
-                          borderRadius: BorderRadius.circular(8.0), // Rounded corners for the image
+                          borderRadius: BorderRadius.circular(8.0),
+                          // Rounded corners for the image
                           child: Image.network(
                             bid.auctionImageUrl!,
                             width: 80,
                             height: 80,
                             fit: BoxFit.cover,
-                            errorBuilder: (context, error, stackTrace) => Container(
-                              width: 80,
-                              height: 80,
-                              color: Colors.grey[200],
-                              child: Icon(Icons.broken_image, color: Colors.grey[400]),
-                            ),
+                            errorBuilder:
+                                (context, error, stackTrace) => Container(
+                                  width: 80,
+                                  height: 80,
+                                  color: Colors.grey[200],
+                                  child: Icon(
+                                    Icons.broken_image,
+                                    color: Colors.grey[400],
+                                  ),
+                                ),
                           ),
                         )
                       else
@@ -100,7 +99,10 @@ class _MyBidsScreenUserState extends State<MyBidsScreenUser> {
                           width: 80,
                           height: 80,
                           color: Colors.grey[200],
-                          child: Icon(Icons.image_not_supported, color: Colors.grey[400]),
+                          child: Icon(
+                            Icons.image_not_supported,
+                            color: Colors.grey[400],
+                          ),
                         ),
                       const SizedBox(width: 12),
                       // Bid Details
@@ -159,12 +161,14 @@ class _MyBidsScreenUserState extends State<MyBidsScreenUser> {
                   ),
                   const Divider(height: 20, thickness: 1), // Separator
                   Align(
-                    alignment: Alignment.centerRight, // Align delete button to the right
+                    alignment: Alignment.centerRight,
+                    // Align delete button to the right
                     child: ElevatedButton.icon(
                       onPressed: () {
                         Get.defaultDialog(
                           title: "Delete Bid",
-                          middleText: "Are you sure you want to delete this bid?",
+                          middleText:
+                              "Are you sure you want to delete this bid?",
                           textConfirm: "Delete",
                           textCancel: "Cancel",
                           confirmTextColor: Colors.white,

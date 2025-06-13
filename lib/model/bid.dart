@@ -1,4 +1,4 @@
-class Bid{
+class Bid {
   String bidId;
   String auctionId;
   String bidderId;
@@ -31,9 +31,11 @@ class Bid{
       auctionImageUrl: json['auctionImageUrl'],
       bidderId: json['bidderId'],
       bidderUsername: json['bidderUsername'],
-      amount: (json['amount'] as num).toDouble(), // Handle num to double
-      bidDateTime: DateTime.parse(json['bidDateTime']), // Parse string to DateTime
-      isWinningBid: json['isWinningBid'] ?? false,
+      amount: (json['amount'] as num).toDouble(),
+      // Handle num to double
+      bidDateTime: DateTime.parse(json['bidDateTime']),
+      // Parse string to DateTime
+      isWinningBid: json['isWinningBid'],
     );
   }
 

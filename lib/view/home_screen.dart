@@ -8,6 +8,7 @@ import 'package:auction_app/view_model/login_vm.dart';
 import 'package:auction_app/view_model/signup_vm.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
 import '../repositories/bid_repo.dart';
 import '../repositories/media_repo.dart';
 import '../view_model/auction_vm.dart';

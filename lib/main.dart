@@ -1,3 +1,4 @@
+import 'package:auction_app/view/auction_detail_screen_user.dart';
 import 'package:auction_app/view/login_screen.dart';
 import 'package:auction_app/view/reset_password_screen.dart';
 import 'package:auction_app/view/signup.dart';
@@ -29,6 +30,7 @@ class MyApp extends StatelessWidget {
         GetPage(name: "/signup", page: ()=>SignUp(),binding:SignupDependency(),),
         GetPage(name: "/forget_password", page: ()=>ResetPasswordPage(),binding: ResetPasswordBinding()),
         GetPage(name: "/home", page: ()=>HomeScreen(),binding: HomeScreenBinding()),
+        // GetPage(name: '/auctionDetailsScreenUser' ,page:()=>AuctionDetailsScreenUser(),binding: AuctionDetailsScreenUserBinding()),
       ],
       initialRoute:'/login' ,
 
@@ -37,4 +39,6 @@ class MyApp extends StatelessWidget {
     );
   }
 }
+
+
 
