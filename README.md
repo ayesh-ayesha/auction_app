@@ -88,8 +88,8 @@ dev_dependencies:
     sdk: flutter
   flutter_lints: ^5.0.0
 
+```
 ---
-
 ## 🧑‍💻 Developer Info
 
 This project was developed entirely by me as part of my university coursework. I handled everything from UI design to architecture planning, Firebase integration, and business logic — with clean, testable code.
