@@ -1,9 +1,7 @@
 import 'dart:io';
-
 import 'package:auction_app/view_model/auction_vm.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
 import '../model/auction.dart';
 
 class AddAuctionScreenAdmin extends StatefulWidget {

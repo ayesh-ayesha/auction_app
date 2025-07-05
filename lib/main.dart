@@ -1,4 +1,3 @@
-import 'package:auction_app/view/auction_detail_screen_user.dart';
 import 'package:auction_app/view/login_screen.dart';
 import 'package:auction_app/view/reset_password_screen.dart';
 import 'package:auction_app/view/signup.dart';
@@ -7,6 +6,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'firebase_options.dart';
+
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();

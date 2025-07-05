@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
 import '../model/auction.dart';
 import '../view_model/UserProfile_vm.dart';
 import '../view_model/auction_vm.dart';
@@ -37,7 +36,7 @@ class _AuctionDetailsScreenUserState extends State<AuctionDetailsScreenUser> {
   Widget build(BuildContext context) {
     return Obx(() {
       final currentAuction = auctionViewModel.selectedAuctionDetails.value;
-      int userBids = bidViewModel.liveBids.length;
+      // int userBids = bidViewModel.liveBids.length;
 
       if (currentAuction == null) {
         return const Scaffold(body: Center(child: Text('Auction not found')));
