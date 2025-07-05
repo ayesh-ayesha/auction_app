@@ -8,19 +8,18 @@
 
 [🎬 Watch Demo](https://drive.google.com/drive/folders/10fgonJ2nIU7Ra63D-QcOa8ASP62ZdUWw)
 
----
+
 
 ## 📱 About the App
 
 **Auction App** is a full-featured Flutter application that simulates a real-time auction system with user authentication, bid tracking, and administrative controls. Designed with a focus on responsiveness, usability, and scalability, this app was developed as an individual university semester project using clean MVVM architecture.
 
----
+
 
 ## ✅ Problem It Solves
 
 In many traditional and digital auction platforms, users struggle with real-time bid validation and transparency. This app offers a seamless and dynamic bidding experience while keeping both users and administrators in control of their data, timelines, and bid results.
 
----
 
 ## 🔑 Core Features
 
@@ -51,7 +50,7 @@ In many traditional and digital auction platforms, users struggle with real-time
     - Fully responsive interface
     - Visually appealing with attention to layout and feedback dialogs
 
----
+
 
 ## 📚 Tech Stack
 
@@ -64,7 +63,7 @@ In many traditional and digital auction platforms, users struggle with real-time
 - 📦 MVVM Architecture
 - 🌍 Intl package for formatting
 
----
+
 
 ## 📦 Dependencies Used
 
@@ -89,19 +88,18 @@ dev_dependencies:
   flutter_lints: ^5.0.0
 
 ```
----
+
 ## 🧑‍💻 Developer Info
 
 This project was developed entirely by me as part of my university coursework. I handled everything from UI design to architecture planning, Firebase integration, and business logic — with clean, testable code.
 
 If you’re looking for a passionate mobile developer with hands-on experience in Flutter, Firebase, and scalable architectures like MVVM — I’d be thrilled to bring value to your team!
 
----
 
 ## 🙌 Let's Connect
 
 📧 Email: [ayeshasiddiqa1087@gmail.com]  
 🔗 GitHub: [https://github.com/ayesh-ayesha]
 
----
+
 
