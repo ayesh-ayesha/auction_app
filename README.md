@@ -1,8 +1,5 @@
 # 🏆 Auction App - Flutter MVVM Auction System
 
-![Flutter](https://img.shields.io/badge/Flutter-3.x-blue.svg)
-![Firebase](https://img.shields.io/badge/Firebase-Auth%20%7C%20Firestore-yellow.svg)
-![Architecture](https://img.shields.io/badge/Architecture-MVVM-green.svg)
 
 ## 📽️ Demo Video
 
