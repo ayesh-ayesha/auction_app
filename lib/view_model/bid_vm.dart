@@ -190,9 +190,9 @@ class BidViewModel extends GetxController {
       bids.sort((a, b) => b.amount.compareTo(a.amount));
 
       // Set the highest bid's flag
-      // for (int i = 0; i < bids.length; i++) {
-      //   bids[i].isWinningBid = (i == 0);
-      // }
+      for (int i = 0; i < bids.length; i++) {
+        bids[i].isWinningBid = (i == 0);
+      }
     }
   }
 
