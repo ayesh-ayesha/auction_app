@@ -95,8 +95,8 @@ If you’re looking for a passionate mobile developer with hands-on experience i
 
 ## 🙌 Let's Connect
 
-📧 Email: [ayeshasiddiqa1087@gmail.com]  
-🔗 GitHub: [https://github.com/ayesh-ayesha]
+📧 Email: ayeshasiddiqa1087@gmail.com
+🔗 GitHub: https://github.com/ayesh-ayesha
 
 
 
