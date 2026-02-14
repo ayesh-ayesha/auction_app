@@ -88,14 +88,15 @@ dev_dependencies:
 
 ## 🧑‍💻 Developer Info
 
-This project was developed entirely by me as part of my university coursework. I handled everything from UI design to architecture planning, Firebase integration, and business logic — with clean, testable code.
+This project was developed entirely by me as part of my university coursework. I handled everything from UI design to architecture planning, Firebase integration, and business logic with clean, testable code.
 
-If you’re looking for a passionate mobile developer with hands-on experience in Flutter, Firebase, and scalable architectures like MVVM — I’d be thrilled to bring value to your team!
+If you’re looking for a passionate mobile developer with hands-on experience in Flutter, Firebase, and scalable architectures like MVVM, I’d be thrilled to bring value to your team!
 
 
 ## 🙌 Let's Connect
 
 📧 Email: ayeshasiddiqa1087@gmail.com
+
 🔗 GitHub: https://github.com/ayesh-ayesha
 
 
